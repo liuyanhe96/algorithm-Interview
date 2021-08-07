@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js" type="text/javascript">
+
+
+    const bt = require('./bt');
+
+//    遍历二叉树的过程也就是一个递归的过程，例如前序遍历，先遍历根节点，然后是根的左子树，
+//    最后右子树；遍历根节点的左子树的时候，又是先遍历左子树的根节点，然后左子树的左子树，左子树的右子树…….
+//
+//    递归实现
+
+
+    var preorderTraversal = function(root) {
+        //1
+        let res = [];
+        var preOrderTraverseNode = (node) =>{  //箭头函数
+            if(node){
+                res.push(node.val);
+                preOrderTraverseNode(node.left);
+                preOrderTraverseNode(node.right);
+            }
+        }
+        preOrderTraverseNode(root);
+        return res;
+
+
+        //2
+
+        if(!root) return [];
+        let res1 = [root.val];
+        if(root.left){ //若左节点存在 则递归
+            res1.push(...preorderTraversal(root.left))
+        }
+        if(root.right){
+            res1.push(...preorderTraversal(root.right))
+        }
+        return res1;
+
+
+    }
+
+
+
+
+    // 迭代实现
+    // 利用栈来记录遍历的过程，实际上，递归就使用了调用栈，所以这里我们可以使用栈来模拟递归的过程
+    //
+    // 首先根入栈
+    // 将根节点出栈，将根节点值放入结果数组中
+    // 然后遍历左子树、右子树，因为栈是先入后出，所以，我们先右子树入栈，然后左子树入栈
+    // 继续出栈（左子树被出栈）…….
+    // 依次循环出栈遍历入栈，直到栈为空，遍历完成
+
+
+const preorderTraversal = (root) => {
+
+    // const list = [];
+    // const stack = [];
+    //
+    // // 当根节点不为空的时候，将根节点入栈
+    // if(root) stack.push(root);
+    // while(stack.length > 0) {
+    //     const curNode = stack.pop();
+    //     // 第一步的时候，先访问的是根节点
+    //     list.push(curNode.val);
+    //
+    //     // 我们先打印左子树，然后右子树
+    //     // 所以先加入栈的是右子树，然后左子树
+    //     if(curNode.right !== null) {
+    //         stack.push(curNode.right)
+    //     }
+    //     if(curNode.left !== null) {
+    //         stack.push(curNode.left)
+    //     }
+    // }
+    // return list
+
+
+
+//主要用这个！！！！！！！！！！！！ 前中后差不多
+    if(!root) return [];
+    let stack1=[],res=[];
+    while (root){
+        res.push(root.val) //push换成unshift变为后序
+        if(root.right) stack1.push(root.right);  //栈先进后出 先遍历右再左
+        if(root.left) stack1.push(root.left);
+        root = stack1.pop();
+    }
+    return res;
+    }
+
+// const preorder = (root)=>{
+//     if(!root) return [];
+//     let Stack = [root],res=[];
+//     while (Stack.length){
+//         const n=Stack.pop();
+//         res.push(n);
+//         if(root.right) Stack.push(root.right)
+//         if(root.left) Stack.push(root.left)
+//     };
+//     return res
+//     };
+
+    console.log(preorder(bt))
+
+
+
+
+
+
+
+
+    let  root =[1,null,2,3] ;
+console.log (preorderTraversal(root))
+
+
+</script>
+
+</body>
+</html>

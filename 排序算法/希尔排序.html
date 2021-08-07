@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--希尔排序for{-->
+
+<!--for{-->
+<!--插入排序-->
+<!--}-->
+<!--}-->
+<!--希尔排序每一轮都是插入排序-->
+<script>
+
+    function shellSort(arr) {
+        for(let gap = Math.floor(arr.length/2); gap > 0; gap = Math.floor(gap/2)) {
+            // 内层循环与插入排序的写法基本一致，只是每次移动的步长变为 gap
+            for(let i = gap; i < arr.length; i++) {
+                let j = i;
+                let temp = arr[j];
+                for(; j> 0; j -= gap) {
+                    if(temp >= arr[j-gap]) {
+                        // 把插入排序中的1换成gap --也是
+                        break;
+                    }
+                    arr[j] = arr[j-gap];
+
+                }
+                arr[j] = temp;
+            }
+        }
+        return arr;
+    }
+
+    // example
+
+    // function shellSort(arr) {
+    //     for(let gap =Math.floor(arr.length/2);gap>0;gap = Math.floor(gap/2)){
+    //         let current,i,j;
+    //         for(i=gap;i<arr.length;i++){
+    //             current = arr[i];
+    //             j=i;
+    //             while (j-gap>=0&&current<arr[j]){
+    //                 arr[j+gap] = arr[j]
+    //             }
+    //             arr[j+gap]=current;
+    //         }
+    //         return arr;
+    //
+    //     }
+    // }
+
+
+    let arr = [2,5,10,7,10,32,90,9,11,1,0,10];
+    alert(shellSort(arr));
+</script>
+
+</body>
+</html>

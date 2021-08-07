@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1 如果left存在，则遍历，直到末尾节点，才记录，然后返回上一层节点
+    // 2 当子节点遍历完毕时，才记录当前节点
+
+    var postorderTraversal = function(root) {
+        // let stack = [], res = [];
+        // while (root) {
+        //     if (root.left) {
+        //         stack.push(root);
+        //         root = root.left;
+        //
+        //     } else if (root.right) {
+        //         stack.push(root);
+        //         root = root.right;
+        //     } else {
+        //         res.push(root.val);
+        //         root = stack.pop();
+        //         if (root && root.left) root.left = null;
+        //         if (root && root.right) root.right = null;
+        //     }
+        // }
+        // return res;
+
+        //2 先遍历右然后左 unshift
+        let stack = [] , res = [];
+        while (root){
+            res.unshift(root.val) //添加到末尾 unshift 变为push 则成前序
+            if(root.left)  stack.push(root.left);
+            if(root.right) stack.push(root.right);
+            root  = stack.pop();
+        }
+        return res;
+    };
+
+
+//递归
+
+        var postorderTraversal = function(root) {
+            let result = []
+            var postorderTraversalNode = (node) => {
+                if(node) {
+                    // 先遍历左子树
+                    postorderTraversalNode(node.left)
+                    // 再遍历右子树
+                    postorderTraversalNode(node.right)
+                    // 最后根节点
+                    result.push(node.val)
+                }
+            }
+            postorderTraversalNode(root)
+            return result
+        };
+
+
+
+
+</script>
+
+</body>
+</html>

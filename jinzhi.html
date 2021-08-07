@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // var n = 5;
+    // var res = n.toString(2)
+    // console.log(res)
+    // console.log((5).toString(2) )
+
+
+
+
+    // var num = readline();
+    function fn(num) {
+        var num = num.toString(2);
+        var index = 0;
+        for (let i = 0; i < num.length; i++) {
+            if (num[i] == 1) {
+                index++
+            }
+        }
+        console.log(index)
+    }
+
+    let num = 19934318
+    fn(num)
+    console.log(typeof num)
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+//    every()与some()方法都是JS中数组的迭代方法。
+//
+//every()是对数组中每一项运行给定函数，如果该函数对每一项返回true,则返回true。
+//
+//some()是对数组中每一项运行给定函数，如果该函数对任一项返回true，则返回true。
+
+
+    var arr = [ 1, 2, 3, 4, 5, 6 ];
+
+    console.log( arr.some( function( item, index, array ){
+        console.log( 'item=' + item + ',index='+index+',array='+array );
+        return item > 3;
+    }));
+    console.log(123456);
+    console.log( arr.every( function( item, index, array ){
+        console.log( 'item=' + item + ',index='+index+',array='+array );
+        return item > 3;
+    }));
+</script>
+</body>
+</html>

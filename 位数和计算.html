@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getSum(num) {
+        let answer = 0;
+
+        while(num) {
+            answer += num % 10;
+            // 向下取整，因为可能出现小数
+            num = Math.floor(num / 10);
+        }
+
+        console.log(answer) ;
+    }
+
+    getSum(12);
+
+
+</script>
+
+</body>
+</html>

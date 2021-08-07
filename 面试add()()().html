@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //1  add 函数接收一个参数，并返回另一个接收第二个参数并把它们加在一起的函数
+  function add(a) {
+    return function (b) {
+      return a+b
+    }
+  }
+
+  console.log(add(2)(3))
+
+  //2 在计算机科学中，柯里化（Currying）是把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数，并且返回接受余下的参数且返回结果的新函数的技术
+  // 就是只传递给函数某一部分参数来调用，返回一个新函数去处理剩下的参数（闭包）!!!!!!!!
+
+  const add = (...args) => args.reduce((a, b) => a + b)
+
+  // 简化写法
+  function currying(func) {
+    const args = []
+    return function result(...rest) {
+      if (rest.length === 0) {
+        return func(...args)
+      } else {
+        args.push(...rest)
+        return result
+      }
+    }
+  }
+
+  const sum = currying(add)
+
+  sum(1, 2)(3)	;// 未真正求值，收集参数的和
+  sum(4);		// 未真正求值，收集参数的和
+  sum()		// 输出 10
+  // 上面的代码理解：先定义 add 函数，然后 currying 函数就是用闭包把传入参数保存起来，当传入参数的数量足够执行函数时，就开始执行函数
+  // 上面的 currying 函数是一种简化写法，判断传入的参数长度是否为 0，若为 0 执行函数，否则收集参数到 args 数组
+
+
+
+
+
+  // 可以理解所谓的柯里化函数，就是封装一系列的处理步骤，通过闭包将参数集中起来计算，最后再把需要处理的参数传进去
+  //
+  // 实现原理就是用闭包把传入参数保存起来，当传入参数的数量足够执行函数时，就开始执行函数
+  // 上面延迟计算部分已经实现了一个简化版的 Currying 函数
+  //
+  // 下面实现一个更加健壮的 Currying 函数
+
+  function currying(fn, length) {
+    // 第一次调用获取函数 fn 参数的长度，后续调用获取 fn 剩余参数的长度
+    length = length || fn.length
+    return function (...args) { // 返回一个新函数，接收参数为 ...args
+      // 新函数接收的参数长度是否大于等于 fn 剩余参数需要接收的长度
+      return args.length >= length
+          ? fn.apply(this, args) // 满足要求，执行 fn 函数，传入新函数的参数
+          : currying(fn.bind(this, ...args), length - args.length)
+      // 不满足要求，递归 currying 函数
+      // 新的 fn 为 bind 返回的新函数，新的 length 为 fn 剩余参数的长度
+    }
+  }
+
+  // Test
+  const fn = currying(function(a, b, c) {
+    console.log([a, b, c]);
+  })
+
+  fn("a", "b", "c")	// ["a", "b", "c"]
+  fn("a", "b")("c")	// ["a", "b", "c"]
+  fn("a")("b")("c")	// ["a", "b", "c"]
+  fn("a")("b", "c")	// ["a", "b", "c"]
+
+
+  // 实现 Currying 函数：用闭包把传入参数保存起来，当传入参数的数量足够执行函数时，就开始执行函数
+  //
+  // 函数参数 length：获取的是形参的个数，但是形参的数量不包括剩余参数个数，而且仅包括第一个参数有默认值之前的参数个数
+</script>
+
+</body>
+</html>

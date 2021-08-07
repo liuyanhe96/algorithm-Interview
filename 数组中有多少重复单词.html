@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr = ["apple","orange","apple","orange","pear","orange"];
+    function getWordCnt(){
+        return arr.reduce(function(prev,next){
+            prev[next] = (prev[next] + 1) || 1;
+            return prev;
+        },{});
+    }
+    console.log(getWordCnt());//{apple: 2, orange: 3, pear: 1}
+
+//     怎么理解prev? next? prev[next]? 以及 || 符号？以及这段代码中最后的 {} 作用是什么？接下来一一解释：
+//
+//       prev: prev是对象 (也就是object)，初始化prev为{}, 也就是倒数第二行的声明；
+//      next指 one of the array elements，也就是说，当reduce遍历到arr的[“apple”,“orange”]时，prev = { apple: 1 }，这时候，
+//     prev={
+//         "apple":1;
+//     }
+//     "orange"还没有，说明prev[next] 为false, 所以取 || 右边的值1，这时候prev就变成了
+//
+//     prev={
+//         "apple":1;
+//     "orange":1;
+//     }
+</script>
+</body>
+</html>

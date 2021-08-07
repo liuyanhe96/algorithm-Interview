@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // setTimeout(()=>{
+  //   console.log('Hello Promise');
+  //   console.log('Hello Promise');
+  //   console.log('Hello Promise');
+  //   console.log('Hello Promise');
+  //   console.log('Hello Promise');
+  //   console.log('Hello Promise');
+  // },2000)
+
+
+
+  new Promise((resolve, reject) => {
+    setTimeout(()=>{
+     resolve()
+    },2000)
+  }).then(()=>{
+    console.log('Hello Promise');
+    console.log('Hello Promise');
+    console.log('Hello Promise');
+    console.log('Hello Promise');
+    console.log('Hello Promise');
+    console.log('Hello Promise');
+
+    return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+          resolve()
+        },2000)
+    })
+
+    }).then(()=>{
+      console.log('Hello vuejs');
+      console.log('Hello vuejs');
+      console.log('Hello vuejs');
+      console.log('Hello vuejs');
+      console.log('Hello vuejs');
+      console.log('Hello vuejs');
+
+      return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+          resolve()
+        },2000)
+      })
+
+      }).then(()=>{
+        console.log('Hello Fontweb');
+        console.log('Hello Fontweb');
+        console.log('Hello Fontweb');
+        console.log('Hello Fontweb');
+        console.log('Hello Fontweb');
+        console.log('Hello Fontweb');
+      })
+
+
+
+
+
+
+
+  //
+  // new Promise((resolve, reject) => {
+  //   setTimeout(()=>{
+  //     // resolve('hello world')
+  //     reject('error message')
+  //   },2000)
+  // }).then((data)=>{
+  //   console.log(data);
+  //   console.log(data);
+  //   console.log(data);
+  //   console.log(data);
+  //   console.log(data);
+  //   console.log(data);
+  // }).catch((err)=>{
+  //   console.log(err);
+  //   console.log(err);
+  //   console.log(err);
+  //   console.log(err);
+  //   console.log(err);
+  //   console.log(err);
+  //
+  // })
+
+
+
+  //另外处理形式
+  // new Promise((resolve, reject) => {
+  //   setTimeout(()=>{
+  //     resolve('reslove------');
+  //     // reject('reject++++++++')
+  //   },2000)
+  // }).then(data=>{console.log(data)} , err=>{console.log(err)})
+
+</script>
+
+</body>
+</html>

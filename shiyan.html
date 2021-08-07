@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+
+    var findMaxConsecutiveOnes = function(nums) {
+        console.log(nums.join('').split('0'))
+        nums = nums.join('').split('0').map((el)=>el.length);
+
+        return Math.max.apply(null,nums)
+    };
+    let nums = [1,1,1,0,0,1,0,1,1,1]
+    findMaxConsecutiveOnes(nums);
+
+    // s = 'asdfgh';
+    // let a= s.split('').reverse().join('')
+    // console.log(a)
+
+    // var arr = ['A', 'B', 'C'];
+    //  var r = arr.filter(function (element, index, self) {
+    //          console.log(element); // 依次打印'A', 'B', 'C'
+    //          console.log(index); // 依次打印0, 1, 2
+    //          console.log(self); // self就是变量arr
+    //          return true;
+    //      });
+
+
+    // var intervals = [[1,3],[2,6],[8,10],[15,18]]
+    // console.log(intervals[1][0])
+
+
+
+    // var a = [];
+    // for (let i = 0; i <10 ; i++) {
+    //     a.push(function () {
+    //         return console.log(i)
+    //
+    //     })
+    // }
+    // console.log(a[0]())
+    // console.log(a[1]())
+
+
+
+    // function test(person) {
+    //     person.age = 26
+    //     person = {
+    //         name: 'yyy',
+    //         age: 30
+    //     }
+    //
+    //     return person
+    // }
+    // const p1 = {
+    //     name: 'yck',
+    //     age: 25
+    // }
+    // const p2 = test(p1)
+    // console.log(p1) // -> ?
+    // console.log(p2) // -> ?
+
+
+
+   // 1.
+    // let yanma='255.254.255.0',ma2='';
+    // let yanmaArr = yanma.split('.');
+    // for(var ele in yanmaArr){  //for..in.. 遍历的时下表index ; for ..of .. 遍历的是内容
+    //     console.log(ele)
+    //     yanmaArr[ele] = Number(yanmaArr[ele]).toString(2);
+    //     if(yanmaArr[ele].length<8) {
+    //         for (let j = 8 - yanmaArr[ele]; j > 0; j--) {
+    //             yanmaArr[ele] = '0' + yanmaArr[ele];
+    //         }
+    //     }
+    //         ma2 += yanmaArr[ele];
+    //
+    // }
+    // console.log(ma2)
+
+
+
+
+   //  //2.
+   // const map = {};
+   //
+   // var errorInfo ='E:\\V1R2\\product\\fpgadrive.c 1325';
+   //     const arr = errorInfo.split(' ');
+   //     const file = arr[0].split('\\');
+   //     const fileName = file[file.length - 1].substr(-16);
+   //     const key = `${fileName} ${arr[1]}`;
+   // console.log(arr[1])
+   // console.log(key)
+   //     if(map[key]){
+   //         map[key]++;
+   //     }else{
+   //         map[key] = 1;
+   //     }
+   // console.log(map[key])
+   //
+   //
+   // const targetKeys = Object.keys(map).slice(-8);
+   // console.log(targetKeys)
+   // targetKeys.forEach(key => {
+   //     const count = map[key];
+   //     console.log(key + ' ' + count)
+   // })
+</script>
+</body>
+</html>

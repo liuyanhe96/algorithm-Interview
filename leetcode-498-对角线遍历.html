@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    给定一个含有 M x N 个元素的矩阵（M 行，N 列），请以对角线遍历的顺序返回这个矩阵中的所有元素，对角线遍历如下图所示。
+    输入:
+    [
+    [ 1, 2, 3 ],
+    [ 4, 5, 6 ],
+    [ 7, 8, 9 ]
+    ]
+
+    输出:  [1,2,4,7,5,3,6,8,9]
+    <script>
+            var findDiagonalOrder = function(matrix) {
+                if(matrix.length < 1) return [];
+                let res = [],
+                    flag= true,  // true-右上 /  false-左下
+                    i = j = 0,
+                    n = matrix.length,
+                    m = matrix[0].length;
+
+                while( i < n && j < m ){
+                    res.push( matrix[i][j] );
+                    m = matrix[i].length; // 每行的长度
+                    if( flag ){
+                        //  右上移动 i-=1; j+=1
+                        i -= 1;
+                        j += 1;
+                    }else {
+                        // 左下移动 i+=1; j-=1
+                        i += 1;
+                        j -= 1;
+                    }
+                    // 处理边界 -- 转弯
+                    if( i < 0 || j < 0 || i == n || j == m ) {
+                        if( flag ){
+                            // 右上
+                            if( j < m ) i = 0; // 上边越界，像右移动
+                            else {
+                                // 右边越界，向下移动
+                                i += 2;
+                                j--;
+                            }
+                        }else {
+                            // 左下
+                            if( i < n) j = 0; // 左边越界， 像下移动
+                            else {
+                                // 下边越界， 想右移动
+                                i--;
+                                j += 2;
+                            }
+                        }
+                        flag = !flag; // 转换方向
+                    }14
+                }
+                return res;
+
+
+
+
+        };
+    </script>
+
+
+</body>
+</html>

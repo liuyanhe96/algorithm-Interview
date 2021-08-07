@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+<!--这道题利用递归实现快速幕的计算，其中心思想是在递归的过程中判断n的奇偶，来实现平方的平法，从而快速计算-->
+    实现函数double Power(double base, int exponent)，求base的exponent次方。不得使用库函数，同时不需要考虑大数问题。
+
+     
+
+    示例 1:
+
+    输入: 2.00000, 10
+    输出: 1024.00000
+
+
+</p>
+<script>
+    var myPow = function (x,n) {
+        return n<0 ? quick(1/x,-n):quick(x,n);
+
+        function quick(x,n) {
+            if(n===0) return 1;
+            let res = quick(x,Math.floor(n/2));
+            return n%2===0?res*res:res*res*x
+
+        }
+
+    }
+
+</script>
+</body>
+</html>

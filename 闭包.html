@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  for (var i = 0; i <5 ; i++) {
+    setTimeout(function () {
+      console.log(i);
+    },1000)
+  }
+  // 5 5 5 5 5
+
+  for (var i = 0; i <5 ; i++) {
+    setTimeout(function () {
+      console.log(i++);
+    },1000)
+  }
+  console.log(i); //5 5 6 7 8 9
+
+  // for (let i = 0; i <5 ; i++) {
+  //   setTimeout(function () {
+  //     console.log(i++);
+  //   },1000)
+  // }
+  //0 1 2 3 4
+
+
+  // 因为setTimeout外面包了一层 立即执行函数 function(i){} (i) 声明了i个自执行函数，保存当时的值到内部
+  // for (var i = 0; i <5 ; i++) {
+  //   (function (x) {
+  //     setTimeout(function () {
+  //       console.log(x++);
+  //     },1000)
+  //   })(i)
+  // }
+  // console.log(i); // 5 1 2 3 4
+
+
+</script>
+
+</body>
+</html>

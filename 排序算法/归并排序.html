@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function mergeSort(arr) {
+        var len = arr.length;
+        if (len < 2) return arr;
+
+        var middle = Math.floor(len / 2)
+        var left = arr.slice(0, middle);
+        var right = arr.slice(middle);
+
+        return merge(mergeSort(left), mergeSort(right));
+    }
+
+        function merge(left,right) {
+            var res = [];
+            while (left.length&&right.length){
+            if (left[0]<=right[0]){
+                res.push(left.shift())
+            }else{
+                res.push(right.shift())
+            }
+
+        }
+            // while (left.length)
+            //     res.push(left.shift());
+            //
+            // while (right.length)
+            //     res.push(right.shift());
+            //    return res;
+
+            return res.concat(left,right);
+    }
+
+
+
+    // function mergeSort(arr) {  // 采用自上而下的递归方法
+    //     var len = arr.length;
+    //     if(len < 2) {
+    //         return arr;
+    //     }
+    //     var middle = Math.floor(len / 2),
+    //         left = arr.slice(0, middle),
+    //         right = arr.slice(middle);
+    //     return merge(mergeSort(left), mergeSort(right));
+    // }
+    //
+    // function merge(left, right)
+    // {
+    //     var result = [];
+    //
+    //     while (left.length && right.length) {
+    //         if (left[0] <= right[0]) {
+    //             result.push(left.shift());
+    //         } else {
+    //             result.push(right.shift());
+    //         }
+    //     }
+    //
+    //     while (left.length)
+    //         result.push(left.shift());
+    //
+    //     while (right.length)
+    //         result.push(right.shift());
+    //
+    //     return result;
+    // }
+
+
+    let arr = [9,7,5,3,18,16,14,26,13,25,21];
+    alert(mergeSort(arr));
+</script>
+
+</body>
+</html>

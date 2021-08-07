@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function insertionSort(arr) {
+        var current,i,j;
+        for(i=0;i<arr.length;i++){
+            j=i;
+            current= arr[i];
+            while (j--&&current<arr[j]){
+                arr[j+1]=arr[j];
+            }
+            arr[j+1] = current;
+        }
+        return arr;
+    }
+    let arr= [9,4,6,8,10,18,13,11,16];
+    console.log(insertionSort(arr))
+
+
+
+
+    function insertionsort1(arr) {
+        var current,i,j;
+        for(i=0;i<arr.length;i++){
+            current = arr[i];
+            j=i;
+            while (j--&&current<arr[j]){
+                arr[j+1] = arr[j]
+            }
+            arr[j+1]=current;
+        }
+        return arr;
+
+    }
+</script>
+
+</body>
+</html>

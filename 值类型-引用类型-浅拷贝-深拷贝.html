@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.js"></script> <!--引入工具-->
+</head>
+<body>
+<div>
+    <h2>值类型</h2>
+    typeof 1->' Numeber' <br>
+    typeof 'a'->'String' <br>
+    typeof true/false -> 'Boolean<br>
+    赋值操作：将变量内容赋值给新的变量，修改一个，另一个不会改变
+    var a = '2';
+    var b =a;//赋值
+
+    <h2>引用类型</h2>
+    typeof {} ->'object' <br>
+    typeof [] -> 'object' <br>
+    var a = {name:'我是A'}
+    var b = a;
+    赋值操作：赋值变量的地址或指针,虽有两个变量，但指向的内存空间是同一块地址，修改其中一个，另一个也会改变。
+    如何让引用类型的赋值操作与值类型效果一样 ： 拷贝。
+</div>
+<script>
+    //如何让引用类型的赋值操作与值类型效果一样 ： 拷贝。
+    function copyobj(arr) {     //浅拷贝
+        let newobj = [];
+        for (let key in arr){
+            newobj[key] = arr[key];
+        }
+        return newobj;
+    }
+
+    var arr = {name:'woshiA'};
+    var b=copyobj(a);
+
+    // or
+    var b = Object.assign({},a) //{}传个空就可以实现浅拷贝，原理是将a的参数复制到{}中；
+
+
+    //深度遍历对象的每一个属性 深拷贝 ：
+
+    var deep = {name: 'woshi',score:[60,100]};
+
+    // 1 引用lodash工具
+    var b =_.cloneDeep(deep);
+
+    // 2 Json序列化对象成字符串，再去反序列化成一个对象； 不需要第三方工具，
+    // 但当对象deep中含有 属性function(){}时，无法被序列化成字符串 ，则被丢弃，不过一般操作都是数据，数据里不会包含function方法的，根据实际情况判断。
+    var b = JSON.parse(JSON.stringify(deep))
+
+
+
+
+
+    function deepclone(value) {
+        //返回非对象和非数组
+        if(value == null) return value;
+        if(typeof value!== 'object') return value;
+        if(value instanceof Date) return new Date(value);
+        if(value instanceof RegExp) return new RegExp(value);
+
+        //获取对象或者数组，通过构造器来创建
+        const newValue = new value.constructor;
+        //for..in.. 遍历数组或对象；
+        for(let key in value){
+            //进入递归
+            newValue[key] = deepclone(value[key]);
+        }
+        return newValue;
+
+    }
+    const value = [1,2,3,4,{a:5,b:8}];
+    const newvalue = deepclone(value);
+    newvalue[4].b=6;
+    console.log(value);
+    console.log(newvalue);
+
+
+
+
+</script>
+
+</body>
+</html>

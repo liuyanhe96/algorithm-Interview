@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/VUe/axios/axios" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/VUe/axios/learnaxios" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/VUe/learnaxios" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/VUe/tabbar" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/VUe/项目/supermall" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/VUe/项目/yl-supermall" vcs="Git" />
+  </component>
+</project>

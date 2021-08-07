@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>功能:输入一个正整数，按照从小到大的顺序输出它的所有质因子（重复的也要列举）（如180的质因子为2 2 3 3 5 ）
+
+    最后一个数后面也要有空格
+</p>
+
+<script>
+    var data = readline();
+    let str = ''
+    for(let i = 2;i<Math.sqrt(data);i++){
+        while(data%i==0){
+            str += i+' ';
+            data/=i;
+        }
+    }
+    if (data > 1){
+        str += data + ' ';
+        console.log(str)
+    }
+</script>
+
+</body>
+</html>

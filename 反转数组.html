@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function res(arr) {
+            var newArr = [];
+            for (i=arr.length-1;i>=0;i--) {
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+
+
+        }
+        var arr1 = res([1,2,3,4,5,6]);
+        console.log(arr1);
+        var arr2 = res(['a','b','c','d','e','f']);
+        console.log(arr2);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

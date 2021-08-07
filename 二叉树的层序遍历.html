@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+//BFS queue 队列
+<script>
+  //command + option + L 缩进规范!!!!
+
+  var levelOrder = function (root) {
+    if (!root) return [];
+    let res = [];
+    let queue = [root];//队列
+    while (queue.length) {
+      let subRes = [];//子数组
+      let len = queue.length;//获取层的节点数量
+      for (i = 0; i < len; i++) {
+        let cur = queue.shift(); //当前层的节点出列
+        subRes.push(cur.val);
+        if (cur.left) queue.push(cur.left);
+        if (cur.right) queue.push(cur.right);
+
+      }
+      res.push(subRes)
+    }
+    return res;
+
+  };
+
+
+  var levelOrder = function (root) {
+    if (!root) return [];
+    const q = [[root, 0]];
+    let res = []
+    while (q.length) {
+      const [n, l] = q.shift();
+      if (!res[l]) {
+        res.push([n.val])
+      } else {
+        res[l].push([n.val])
+      }
+      if (n.left) q.push([n.left, l + 1])
+      if (n.right) q.push([n.right, l + 1])
+    }
+    return res;
+  };
+
+// !!!!!!
+  var levelOrder = function(root) {
+      if(!root) return [];
+      const q=[root];
+      let res=[]
+      while(q.length){ //所以就可以保证每次进入到这个循环体里时 q里全都是同一层级的节点 再把同一层级节点放入一个数组在推入大数组里!!!!!
+          let leng = q.length; //长度等于获取第几层的节点个数
+          res.push([]);
+          while(leng--){ //执行层数节点个数次 只把老人出队孩子入队节点个数次
+              const n = q.shift(); //老人清出队
+              res[res.length-1].push(n.val)
+              if(n.left) q.push(n.left) //孩子入队
+              if(n.right) q.push(n.right)
+          }
+
+
+      }
+      return res;
+  };
+</script>
+
+</body>
+</html>

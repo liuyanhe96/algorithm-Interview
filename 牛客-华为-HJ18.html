@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>本题的关键是如何判断IP地址和掩码的有效性。IP地址的有效性比较好判断，只要由四个整数组成，并且每个整数在0-255之间即可。掩码的有效性相对麻烦一些，
+    根据题目的提示，合法的子网掩码前面是连续的1，后面全是0。对此，需要注意以下几点：
+    第一，子网掩码是32位的，即由四个整数组成， 每个整数为8位，范围咋0-255之间。
+    第二，全0和全1的子网掩码都是非法的，即0.0.0.0和255.255.255.255是非法的。
+    第三，前面是连续的1，后面全是0。即最后一个1的位置必须在第一个0的位置前面。
+    为了判断子网掩码的合法性，必须先将子网掩码表示成二进制字符串的形式。具体来说，先将子网掩码以.为分隔提取四个子串，并将每个子串都转化为二进制字符串。
+    以最后的二进制字符串来判断子网掩码的合法性会比较方便。
+    完成了IP地址和子网掩码的合法性判断后，分类就比较简单了。需要注意的是，一个IP地址可能同时属于私网IP和ABCDE中的某一类，也可能不属于任何一种题目中给出的分类（比如0.255.36.47）。
+    最后，需要注意输出格式。前面的各类IP地址以空格分开，最后一个后面不要空格，直接换行，否则会出错==</p>
+<script>
+    let line
+    let A = 0
+    let B = 0
+    let C = 0
+    let D = 0;
+    let E = 0
+    let errIp = 0
+    let privateIp =0
+    while(line = readline()){
+        let tempArr = line.split('~')
+        let ip = tempArr[0]
+        let yanma = tempArr[1]
+        deal(ip,yanma)
+    }
+    console.log(A+' '+B+' '+C+' '+D+' '+E+' '+errIp+' ' + privateIp)
+    function deal(ip,yanma){
+        let ipArr = ip.split('.')
+        let yanmaArr = yanma.split('.')
+        let ma2 = ''
+//    for(let ele in yanmaArr){
+//        yanmaArr[ele] = Number(yanmaArr[ele]).toString(2);
+        //       yanmaArr[ele].padStart(8)
+        //       ma2+=yanmaArr[ele]
+        //   }
+        for(var ele in yanmaArr){
+            yanmaArr[ele] = Number(yanmaArr[ele]).toString(2);
+            if(yanmaArr[ele].length<8){
+                for(let j=8-yanmaArr[ele].length;j>0;j--){
+                    yanmaArr[ele] = '0'+yanmaArr[ele];
+                }
+            }
+            ma2 += yanmaArr[ele];
+        }
+        for(let i=0;i<ipArr.length;i++){
+            ipArr[i] = parseInt(ipArr[i])
+        }
+        if(ipArr[0]>=1 && ipArr[0]<=126 && ipArr[1]>=0 && ipArr[1]<=255 && ipArr[2] >=0 && ipArr[3]<=255 && ipArr[3]>=0 && ipArr[3]<=255){
+            if((ma2.lastIndexOf('1')+1==ma2.indexOf('0'))&&(ma2.indexOf('0')!==-1)&&(ma2.lastIndexOf('1')!==-1)){
+                //前面是连续的1，后面全是0。即最后一个1的位置必须在第一个0的位置前面。  全0和全1的子网掩码都是非法的
+                A++;
+                if(ipArr[0] === 10){
+                    privateIp++;
+                }
+            }else{
+                errIp++
+            }
+        }else if(ipArr[0]>=128 && ipArr[0]<=191 && ipArr[1]>=0 && ipArr[1]<=255 && ipArr[2] >=0 && ipArr[3]<=255 && ipArr[3]>=0 && ipArr[3]<=255){
+            if((ma2.lastIndexOf('1')+1==ma2.indexOf('0'))&&(ma2.indexOf('0')!==-1)&&(ma2.lastIndexOf('1')!==-1)){
+                B++;
+                if(ipArr[0] === 172 && ipArr[2] >=16 && ipArr[2]<=31){
+                    privateIp++;
+                }
+            }else{
+                errIp++
+            }
+        }else if(ipArr[0]>=192 && ipArr[0]<=223 && ipArr[1]>=0 && ipArr[1]<=255 && ipArr[2] >=0 && ipArr[3]<=255 && ipArr[3]>=0 && ipArr[3]<=255){
+            if((ma2.lastIndexOf('1')+1==ma2.indexOf('0'))&&(ma2.indexOf('0')!==-1)&&(ma2.lastIndexOf('1')!==-1)){
+                C++;
+                if(ipArr[0] === 192 && ipArr[2] === 168){
+                    privateIp++;
+                }
+            }else{
+                errIp++
+            }
+        }else if(ipArr[0]>=224 && ipArr[0]<=239 && ipArr[1]>=0 && ipArr[1]<=255 && ipArr[2] >=0 && ipArr[3]<=255 && ipArr[3]>=0 && ipArr[3]<=255){
+            if((ma2.lastIndexOf('1')+1==ma2.indexOf('0'))&&(ma2.indexOf('0')!==-1)&&(ma2.lastIndexOf('1')!==-1)){
+                D++;
+            }else{
+                errIp++
+            }
+        }else if(ipArr[0]>=240 && ipArr[0]<=255 && ipArr[1]>=0 && ipArr[1]<=255 && ipArr[2] >=0 && ipArr[3]<=255 && ipArr[3]>=0 && ipArr[3]<=255){
+            if((ma2.lastIndexOf('1')+1==ma2.indexOf('0'))&&(ma2.indexOf('0')!==-1)&&(ma2.lastIndexOf('1')!==-1)){
+                E++;
+            }else{
+                errIp++
+            }
+        }else if(ipArr[0] === 0 || ipArr[0]=== 127){
+            if(!(ma2.lastIndexOf('1')+1==ma2.indexOf('0'))&&(ma2.indexOf('0')!=-1)&&(ma2.lastIndexOf('1')!=-1)){
+                errIp++;
+            }
+        }else{
+            errIp++
+        }
+    }
+</script>
+
+</body>
+</html>

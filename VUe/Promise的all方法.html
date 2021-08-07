@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+ Promise.all([
+   new Promise((resolve, reject) => {
+     setTimeout(()=>{
+       resolve({name:'yl',age:'18',sex:'male'})
+     },2000)
+   }),
+     new Promise((resolve, reject) => {
+       setTimeout(()=>{
+         resolve({name:"lyh", age:'19'})
+       },3000)
+     })
+ ]).then(result=>{
+   console.log(result);
+ })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。-->
+<!--注意：如果 s 中存在这样的子串，我们保证它是唯一的答案。-->
+<!--示例 1：-->
+
+<!--输入：s = "ADOBECODEBANC", t = "ABC"-->
+<!--输出："BANC"-->
+<!--示例 2：-->
+
+<!--输入：s = "a", t = "a"-->
+<!--输出："a"-->
+
+
+<script>
+  //算法视频 7-6 字典Map!!!!!!
+  var minWindow = function(s, t) {
+    let l = 0
+    let r =0;
+    const need = new Map()
+    for(let c of t) { //罗列活动窗口所需字符的个数
+      need.set(c,need.has(c) ? need.get(c)+1 : 1)
+    }
+    // console.log(need)
+    let needType = need.size;
+    let res=''
+    while(r<s.length){  //移动右指针
+      const c = s[r];
+      if(need.has(c)){
+        need.set(c,need.get(c)-1)
+        if(need.get(c)===0) needType-=1;
+      }
+      while(needType===0){
+        const newRes=s.substring(l,r+1);
+        if(!res||newRes.length<res.length) res = newRes
+        const c2=s[l];
+        if(need.has(c2)){
+          need.set(c2,need.get(c2)+1)
+          if(need.get(c2)===1) needType+=1
+        }
+        l++
+      }
+      r++
+    }
+    return res
+
+  };
+ let  s = "ADOBECODEBANC", t = "ABC";
+  console.log(minWindow(s,t))
+</script>
+
+</body>
+</html>

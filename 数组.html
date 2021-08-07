@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        //斐波那契
+        // 1 1 2 3 5 8    f(n) = f(n-1) + f(n-2)
+        function fibonacci(n) {
+            return n<=2 ? 1 : fibonacci(n-1) + fibonacci(n-2)  //递归调用
+        }
+
+//reduce方法
+        // arr.reduce(function(prev,cur,index,arr){
+        // ...
+        // }, init);
+
+        // 1. reduceRight()
+        // 该方法用法与reduce()其实是相同的，只是遍历的顺序相反，它是从数组的最后一项开始，向前遍历到第一项。
+
+        // 其中，
+        // arr 表示原数组；
+        // prev 表示上一次调用回调时的返回值，或者初始值 init;
+        // cur 表示当前正在处理的数组元素；
+        // index 表示当前正在处理的数组元素的索引，若提供 init 值，则索引为0，否则索引为1；
+        // init 表示初始值。
+
+        let  channelTabList = [
+            {1: '推荐'},
+            {2: '最新'},
+            {3: '快赚'},
+            {4: '高额'}
+        ];
+        let lists = channelTabList.reduce((acc,value)=>{
+            return {...acc,...value}
+        });
+       //转换： {1: "推荐", 2: "最新", 3: "快赚", 4: "高额"}
+
+
+
+
+
+        //数组去重
+        var arr = [1, 2, 2, 3, 4, 5, 5, 6, 7, 7, 8, 8, 0, 8, 6, 3, 4, 56, 2];
+        var arr2 = arr.filter((x, index,self)=>self.indexOf(x) === index)
+        console.log(arr2); // [1, 2, 3, 4, 5, 6, 7, 8, 0, 56]
+
+
+        //数组去重
+        var newArr = arr.reduce(function (prev, cur) {
+            prev.indexOf(cur) === -1 && prev.push(cur);
+            return prev;
+        },[]);
+
+
+
+        var arr=[2,3,4,7,9,15]
+        var sum=0;
+        var average=0;
+        for (i=0;i<arr.length;i++) {
+            sum+=arr[i]
+        }
+
+        average=sum/arr.length
+        console.log(sum,average);
+
+
+
+
+        //求数组最大值
+            var arr1=[2,5,9,4,15,10,3,13];
+            var max=arr1[0];
+            for (i=1;i<arr1.length;i++) {
+                if (arr1[i]>max){
+                    max=arr1[i]
+                }
+            }
+        console.log(max)
+
+        var max = arr.reduce(function (prev, cur) {
+            return Math.max(prev,cur);
+        });
+
+
+
+    //大于10的存入新数组
+    //方法1
+        var arr2=[2,4,6,8,11,1,3,14,17];
+        var arr3=[];
+        var j=0;
+        for (i=0;i<arr2.length;i++) {
+            if (arr2[i]>=10){
+
+                    arr3[j]=arr2[i];
+                    j++;
+
+            }
+        }
+        console.log(arr3)
+        //方法2
+        var arr4=[2,4,6,8,11,1,3,14,17];
+        var arr5=[];
+        for (i=0;i<arr4.length;i++) {
+            if (arr4[i]>=10){
+                arr5[arr5.length]=arr4[i];
+            }
+        }
+        console.log(arr3)
+
+
+        var arr6 = [2,3,6,7,0,9,11,15,24];
+        var newArr = [];
+        for (var i=0; i<=arr6.length; i++){
+            if (arr6[i] != 0){
+                newArr[newArr.length] = arr6[i];
+
+            }
+        }
+        console.log(newArr);
+
+//数组求和
+        var sum = arr.reduce(function (prev, cur) {
+            return prev + cur;
+        },0);
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

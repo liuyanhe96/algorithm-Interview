@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var hasCycle = function(head) {
+
+        //快慢指针法
+//         快指针和慢指针，初始都指向头节点
+//         慢指针每次走一步，快指针每次走两步，不断比较它们指向的节点的值
+//         如果节点值相同，说明有环。如果不同，继续循环。
+//         类似“追及问题”
+//          两个人在环形跑道上赛跑，同一个起点出发，一个跑得快一个跑得慢，在某一时刻，跑得快的必定会追上跑得慢的，只要是跑道是环形的，不是环形就肯定追不上
+
+
+
+        let fastP = head;
+        let slowP = head;
+        while (fastP) {                         // 快指针指向真实节点
+            if (fastP.next == null) return false; // 如果下一个为null，说明没有环
+            slowP = slowP.next;                   // 慢的走一步
+            fastP = fastP.next.next;              // 快的走两步
+            if (slowP == fastP) return true;      // 快慢指针相遇，有环
+        }
+        return false;
+
+
+
+        // 哈希表存储曾经遍历过的节点，遍历每一个节点，都查看哈希表是否存在当前节点，如果存在，则说明链表有环
+        // 如果不存在，则存入哈希表，并继续遍历下一节点
+        // 时间复杂度为 O(n)，空间复杂度为 O(n)
+
+
+
+        let map = new Map()
+        while (head) {
+            if (map.has(head)) return true
+            map.set(head, true)
+            head = head.next
+        }
+        return false
+    }
+
+
+</script>
+
+</body>
+</html>

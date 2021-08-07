@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // 1 判断left是否存在，如果存在则进入left节点
+  // 2 如果left和right都为null时 则记录当前节点
+  // 3 当left节点为null，right节点存在时，则记录当前节点，然后跳到右节点。
+
+  // var inorderTraversal = function (root) {
+  //   let res = [], stack = [];
+  //   while (root) {
+  //     // 2
+  //     if (!root.left && !root.right) {
+  //       res.push(root.val);//记录当前节点
+  //       root = stack.pop() //回到上一节点
+  //       root && (root.left = null); //使以记录的节点 当root存在时则人为设为null使回到的上一节点符合2 3
+  //     }
+  //     //1
+  //     else if (root.left) {
+  //       stack.push(root); //若存在则存储入栈
+  //       root = root.left; //跳到左节点
+  //     } else if (root.right) {
+  //       res.push(root.val)//记录当前节点
+  //       root = root.right //跳到右节点
+  //     }
+  //   }
+  //   return res;
+  // }
+
+  let root = [1, null, 2, 3]
+  console.log(inorderTraversal(root))
+
+
+  var inorderTraversal = function (root) {
+      //递归
+    // if (!root) return [];
+    // const res = []
+    // const rec = (n) => {
+    //   if (n.left) rec(n.left)
+    //   res.push(n.val)
+    //   if (n.right) rec(n.right)
+    // }
+    // rec(root)
+    // return res;
+
+//迭代
+    const stack=[];
+    let p=root;
+    const res=[]
+    while(stack.length||p){
+        if(!root) return [];
+        while(p){
+            stack.push(p);
+            p = p.left;
+        }
+        const n= stack.pop();
+        res.push(n.val);
+        p=n.right
+    }
+    return res
+  }
+</script>
+
+</body>
+</html>

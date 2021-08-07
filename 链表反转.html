@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var reverseList = function(head) {
+        let [prev, curr] = [null, head];
+        while (curr) {
+            let tmp = curr.next;    // 1. 临时存储当前指针后续内容
+            curr.next = prev;       // 2. 反转链表
+            prev = curr;            // 3. 接收反转结果
+            curr = tmp;             // 4. 接回临时存储的后续内容
+        }
+        return prev;
+    };
+    //简化
+    var reverseList = function(head) {
+        let [prev, curr] = [null, head];
+        while (curr) {
+            [curr.next, prev, curr] = [prev, curr, curr.next];
+        }
+        return prev;
+    };
+
+//第三思路: 尾递归法
+//     思路: 用 prev 和 curr 存储推进状态，直到 curr 为空则输出结果.
+//         复杂度分析:
+//     时间: O(n). 等同于正常推进，故 O(n).
+//         空间: O(1). 尾递归方式，重复使用一个空间故空间复杂度为 O(1).
+
+    var reverseList = function(head) {
+        return reverse(null, head);
+    };
+
+    function reverse (prev, curr) {
+        if (!curr) return prev;
+        // [curr.next, prev, curr] = [prev, curr.next, curr.next];
+        let tmp = curr.next;
+        curr.next = prev;
+        return reverse(curr, tmp);
+
+    }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

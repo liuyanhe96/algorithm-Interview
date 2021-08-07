@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" id="txt">
+  <p id="show"></p>
+</div>
+<script>
+  var obj = {};
+
+  Object.defineProperty(obj,'txt',{
+    get:function () {
+      return obj
+    },
+    set:function (newValue) {
+      document.getElementById('txt').value= newValue;
+      document.getElementById('show').innerHTML = newValue
+    }
+  })
+
+  document.getElementById('txt').addEventListener("keyup", function (e) {
+    obj.txt = e.target.value
+  })
+
+
+// e.target.value获取的就是你选择接受事件的元素输入的或者选择的值。
+// 参数e接收事件对象。
+// 而事件对象也有很多属性和方法，其中target属性是获取触发事件对象的目标，也就是绑定事件的元素，e.target表示该DOM元素，然后在获取其相应的属性值。
+</script>
+
+</body>
+</html>
